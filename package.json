@@ -1,0 +1,39 @@
+{
+  "name": "yasa",
+  "version": "0.1.0",
+  "description": "YASA - Yet Another Agent System: Agent-as-YAML with OpenAI-compatible API",
+  "type": "module",
+  "main": "dist/server/index.js",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "build": "tsc",
+    "start": "node dist/server/index.js",
+    "validate": "node scripts/validate-yaml.mjs configuration/",
+    "validate:file": "node scripts/validate-yaml.mjs",
+    "test": "vitest"
+  },
+  "keywords": ["agent", "yaml", "openai", "fastify", "llm"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.1",
+    "@openai/agents": "^0.1.9",
+    "@openai/agents-openai": "^0.1.9",
+    "fastify": "^5.6.1",
+    "pino": "^9.12.0",
+    "pino-pretty": "^13.0.0",
+    "yaml": "^2.8.1",
+    "zod": "^3.25.76"
+  }
+}

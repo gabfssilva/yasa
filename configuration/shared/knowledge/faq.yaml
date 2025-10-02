@@ -1,0 +1,21 @@
+# configuration/shared/knowledge/faq.yaml
+knowledge_base:
+  id: "shared/kb-faq"
+  name: "FAQ básico - Suporte"
+  description: "Base de conhecimento com informações frequentes de atendimento"
+  sources:
+    - type: "inline"
+      documents:
+        - title: "Horário de atendimento"
+          content: |
+            Nosso atendimento funciona de segunda a sexta-feira, das 9h às 18h (horário de Brasília).
+            Não atendemos aos sábados, domingos e feriados nacionais.
+        - title: "Canais de contato"
+          content: |
+            Email: suporte@example.com
+            Telefone: (11) 1234-5678
+            Chat: disponível no site durante horário comercial
+  processing:
+    chunking:
+      strategy: "semantic"
+      max_tokens: 500

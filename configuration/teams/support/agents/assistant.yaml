@@ -1,0 +1,50 @@
+# configuration/teams/support/agents/assistant.yaml
+agent:
+  id: "teams/support/assistant"
+  name: "Assistente de Suporte"
+  team: "support"
+  owner: "@support-team"
+  version: "0.1.0"
+  description: "Agente para atendimento e suporte básico, com acesso a FAQ e diagnóstico de rede"
+
+  type: "conversational"
+
+  # model: string id do recurso em shared/models/*
+  model: "shared/gpt-4o-mini"
+
+  # tools: array de ids para resources em shared/tools/*
+  tools:
+    - "shared/get-ip"
+
+  # knowledge: array de ids para KBs em shared/knowledge/*
+  knowledge:
+    - "shared/kb-faq"
+
+  # prompt / instructions
+  prompt:
+    system: |
+      Você é o Assistente de Suporte.
+
+      Use a base de conhecimento para responder perguntas frequentes sobre horários e contatos.
+
+      Se o usuário relatar problemas de conexão ou solicitar diagnóstico, use a tool get_public_ip
+      para verificar o IP público atual.
+
+      Seja sempre cortês e objetivo nas respostas.
+
+  runtime:
+    concurrency: 2
+    max_steps: 10
+
+  evaluation:
+    golden_conversations:
+      - name: "faq-horario"
+        description: "Pergunta sobre horário de atendimento"
+        turns:
+          - user: "Qual o horário de atendimento?"
+          - assistant: "Nosso atendimento funciona de segunda a sexta-feira, das 9h às 18h (horário de Brasília)."
+      - name: "diagnostico-ip"
+        description: "Solicitação de diagnóstico de IP"
+        turns:
+          - user: "Qual meu IP atual?"
+          - assistant: "Vou verificar seu IP público..."

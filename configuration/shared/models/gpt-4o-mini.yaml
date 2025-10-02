@@ -1,0 +1,9 @@
+# configuration/shared/models/gpt-4o-mini.yaml
+model:
+  id: "shared/gpt-4o-mini"
+  name: "gpt-4o-mini"
+  provider: "openai"
+  description: "Modelo leve para tarefas de baixa-latência"
+  config:
+    temperature: 0.7
+    max_tokens: 2048

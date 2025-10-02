@@ -1,0 +1,19 @@
+# configuration/shared/tools/get-ip.yaml
+tool:
+  id: "shared/get-ip"
+  name: "get_public_ip"
+  type: "http"
+  description: "Obtém o IP público atual do servidor"
+  endpoint:
+    url: "https://api.ipify.org?format=json"
+    method: "GET"
+    timeout_ms: 3000
+  # parameters usando JSON Schema (draft-07)
+  parameters:
+    $schema: "http://json-schema.org/draft-07/schema#"
+    type: object
+    properties: {}
+    required: []
+  policies:
+    retries: 1
+    rate_limit_per_min: 100

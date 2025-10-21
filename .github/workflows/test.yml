@@ -57,3 +57,9 @@ jobs:
           OPENAI_BASE_URL: https://models.github.ai/inference
           OPENAI_API_KEY: ${{ secrets.GITHUB_TOKEN }}
         run: npm run test:integration
+
+      # Alternative: Use OpenAI directly (requires OPENAI_API_KEY secret)
+      # - name: Run integration tests with OpenAI
+      #   env:
+      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      #   run: npm run test:integration

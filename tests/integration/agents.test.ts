@@ -9,7 +9,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-describe('Support Assistant Agent (Integration with LLM)', () => {
+// Skip integration tests if no API key is available
+const hasApiKey = !!process.env.OPENAI_API_KEY;
+const describeOrSkip = hasApiKey ? describe : describe.skip;
+
+describeOrSkip('Support Assistant Agent (Integration with LLM)', () => {
   let registry: ManifestRegistry;
 
   beforeAll(async () => {
@@ -96,7 +100,7 @@ describe('Support Assistant Agent (Integration with LLM)', () => {
   }, 30000);
 });
 
-describe('Weather Assistant Agent (Integration with LLM)', () => {
+describeOrSkip('Weather Assistant Agent (Integration with LLM)', () => {
   let registry: ManifestRegistry;
 
   beforeAll(async () => {

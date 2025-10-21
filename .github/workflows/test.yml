@@ -1,0 +1,65 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, claude/**]
+  pull_request:
+    branches: [main]
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate YAML configurations
+        run: npm run validate
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+  integration-tests:
+    name: Integration Tests (GitHub Models)
+    runs-on: ubuntu-latest
+    continue-on-error: true  # Don't fail CI if GitHub Models is unavailable
+
+    permissions:
+      contents: read
+      models: read  # Access to GitHub Models
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run integration tests with GitHub Models
+        env:
+          OPENAI_BASE_URL: https://models.github.ai/inference
+          OPENAI_API_KEY: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run test:integration
+
+      # Alternative: Use OpenAI directly (requires OPENAI_API_KEY secret)
+      # - name: Run integration tests with OpenAI
+      #   env:
+      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      #   run: npm run test:integration

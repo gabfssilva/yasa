@@ -10,7 +10,11 @@
     "start": "node dist/server/index.js",
     "validate": "node scripts/validate-yaml.mjs configuration/",
     "validate:file": "node scripts/validate-yaml.mjs",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": ["agent", "yaml", "openai", "fastify", "llm"],
   "author": "",

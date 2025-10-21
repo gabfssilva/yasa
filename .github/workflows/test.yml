@@ -33,6 +33,7 @@ jobs:
   integration-tests:
     name: Integration Tests (GitHub Models)
     runs-on: ubuntu-latest
+    continue-on-error: true  # Don't fail CI if GitHub Models is unavailable
 
     permissions:
       contents: read

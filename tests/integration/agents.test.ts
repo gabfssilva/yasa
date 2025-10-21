@@ -10,8 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Skip integration tests if no API key is available
+// Note: These tests require network access to OpenAI API or GitHub Models
+// They will run in GitHub Actions but may fail in sandboxed environments
 const hasApiKey = !!process.env.OPENAI_API_KEY;
 const describeOrSkip = hasApiKey ? describe : describe.skip;
+
+if (!hasApiKey) {
+  console.log('⏭️  Skipping integration tests: OPENAI_API_KEY not set');
+}
 
 describeOrSkip('Support Assistant Agent (Integration with LLM)', () => {
   let registry: ManifestRegistry;

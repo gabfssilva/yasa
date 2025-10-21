@@ -1,5 +1,6 @@
 // src/runtime/agent.ts
 import { Agent, run } from '@openai/agents';
+import { OpenAIChatCompletionsModel } from '@openai/agents-openai';
 import type {
   AgentManifest,
   ModelManifest,

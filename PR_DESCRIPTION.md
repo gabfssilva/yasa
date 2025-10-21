@@ -9,7 +9,7 @@ This PR implements a complete testing infrastructure for YASA with unit and inte
 ### Test Infrastructure
 - ✅ **Vitest** configured with TypeScript support and path aliases
 - ✅ Test directory structure: `unit/`, `integration/`, `helpers/`
-- ✅ Comprehensive documentation (`TESTING.md`, `tests/README.md`)
+- ✅ Comprehensive documentation (`tests/README.md`)
 
 ### Unit Tests (7 tests - Fast, Offline)
 - ✅ Manifest loading and validation
@@ -93,11 +93,10 @@ Test Files  1 passed (1)
 
 ## 📚 Documentation
 
-### For Users
-- **TESTING.md**: Complete testing guide with examples
-- **tests/README.md**: Quick start guide for writing tests
+### For Users & Developers
+- **tests/README.md**: Complete testing guide with examples and quick start
 
-### For Developers
+### Features
 - Clear test structure and naming conventions
 - Mock helpers for tool testing
 - Examples of both unit and integration tests
